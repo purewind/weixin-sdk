@@ -50,12 +50,12 @@ public class MpMessages {
 	/**
 	 * 群发图文消息给指定群组的人
 	 *
-	 * @param group
+	 * @param tag
 	 * @param mpNews
 	 * @return
 	 */
-	public long mpNews(int group, String mpNews) {
-		return send(new Filter(false, String.valueOf(group)), null, "mpnews", mpNews);
+	public long mpNews(int tag, String mpNews) {
+		return send(new Filter(false, String.valueOf(tag)), null, "mpnews", mpNews);
 	}
 
 	/**
@@ -82,12 +82,12 @@ public class MpMessages {
 	/**
 	 * 指定分组群发文本消息
 	 *
-	 * @param group
+	 * @param tag
 	 * @param text
 	 * @return
 	 */
-	public long text(int group, String text) {
-		return send(new Filter(false, String.valueOf(group)), null, "text", text);
+	public long text(int tag, String text) {
+		return send(new Filter(false, String.valueOf(tag)), null, "text", text);
 	}
 
 	/**
@@ -137,12 +137,12 @@ public class MpMessages {
 	/**
 	 * 群发语音消息给指定群组
 	 *
-	 * @param group
+	 * @param tag
 	 * @param voice
 	 * @return
 	 */
-	public long voice(int group, String voice) {
-		return send(new Filter(false, String.valueOf(group)), null, "voice", voice);
+	public long voice(int tag, String voice) {
+		return send(new Filter(false, String.valueOf(tag)), null, "voice", voice);
 	}
 
 	/**
@@ -170,12 +170,12 @@ public class MpMessages {
 	/**
 	 * 群发图片消息给指定群组的人
 	 *
-	 * @param group
+	 * @param tag
 	 * @param image
 	 * @return
 	 */
-	public long image(int group, String image) {
-		return send(new Filter(false, String.valueOf(group)), null, "image", image);
+	public long image(int tag, String image) {
+		return send(new Filter(false, String.valueOf(tag)), null, "image", image);
 	}
 
 	/**
@@ -216,14 +216,14 @@ public class MpMessages {
 	/**
 	 * 群发视频消息给特定分组的人
 	 *
-	 * @param group
+	 * @param tag
 	 * @param mediaId
 	 * @param title
 	 * @param desc
 	 * @return
 	 */
-	public long video(int group, String mediaId, String title, String desc) {
-		return video(new Filter(false, String.valueOf(group)), null, mediaId, title, desc);
+	public long video(int tag, String mediaId, String title, String desc) {
+		return video(new Filter(false, String.valueOf(tag)), null, mediaId, title, desc);
 	}
 
 	/**
@@ -279,12 +279,12 @@ public class MpMessages {
 	/**
 	 * 群发卡券给指定分组的人
 	 *
-	 * @param group
+	 * @param tag
 	 * @param wxcard
 	 * @return
 	 */
-	public long card(int group, String wxcard) {
-		return send(new Filter(false, String.valueOf(group)), null, "wxcard", wxcard);
+	public long card(int tag, String wxcard) {
+		return send(new Filter(false, String.valueOf(tag)), null, "wxcard", wxcard);
 	}
 
 	/**
@@ -424,12 +424,12 @@ public class MpMessages {
 		@JsonProperty("is_to_all")
 		private boolean toALl;
 
-		@JsonProperty("group_id")
-		private String group;
+		@JsonProperty("tag_id")
+		private String tag;
 
-		public Filter(boolean toALl, String group) {
+		public Filter(boolean toALl, String tag) {
 			this.toALl = toALl;
-			this.group = group;
+			this.tag = tag;
 		}
 
 		public boolean isToALl() {
@@ -440,12 +440,12 @@ public class MpMessages {
 			this.toALl = toALl;
 		}
 
-		public String getGroup() {
-			return group;
+		public String getTag() {
+			return tag;
 		}
 
-		public void setGroup(String group) {
-			this.group = group;
+		public void setTag(String tag) {
+			this.tag = tag;
 		}
 	}
 

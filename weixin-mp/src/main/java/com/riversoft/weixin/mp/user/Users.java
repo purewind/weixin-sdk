@@ -1,6 +1,7 @@
 package com.riversoft.weixin.mp.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.Lists;
 import com.riversoft.weixin.common.WxClient;
 import com.riversoft.weixin.common.exception.WxRuntimeException;
 import com.riversoft.weixin.common.util.JsonMapper;
@@ -62,6 +63,30 @@ public class Users {
 
     public UserPagination list() {
         return list(null);
+    }
+
+    public List<String> listAll() {
+        return getOpenIds(null);
+    }
+
+    private List<String> getOpenIds(String nextId) {
+        List<String> openIds = Lists.newArrayList();
+        UserPagination pagination;
+        if (null != nextId) {
+            pagination = Users.defaultUsers().list();
+        } else {
+            pagination = Users.defaultUsers().list(nextId);
+        }
+        if (pagination.getCount() > 0) {
+            openIds.addAll(pagination.getUsers());
+        }
+        if (null != pagination.getNextOpenId()) {
+            List<String> nexus = getOpenIds(pagination.getNextOpenId());
+            if (null !=nexus && !nexus.isEmpty()) {
+                openIds.addAll(nexus);
+            }
+        }
+        return openIds;
     }
 
     /**
