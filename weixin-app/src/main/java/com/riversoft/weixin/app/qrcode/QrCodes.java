@@ -53,4 +53,16 @@ public class QrCodes {
         String json = "{\"path\": \"%s\", \"width\": %s}";
         return wxClient.copyStream(url, String.format(json, path, size));
     }
+
+    public InputStream createCode(String path, int size) {
+        String url = WxEndpoint.get("url.code.create");
+        String json = "{\"path\": \"%s\", \"width\": %s}";
+        return wxClient.copyStream(url, String.format(json, path, size));
+    }
+
+    public InputStream createLimitCode(String scene,String path, int size) {
+        String url = WxEndpoint.get("url.code.limit.create");
+        String json = "{\"scene\": \"%s\",\"path\": \"%s\", \"width\": %s}";
+        return wxClient.copyStream(url, String.format(json, scene, path, size));
+    }
 }
